@@ -2,6 +2,8 @@ package merliontechs.web.rest;
 
 import merliontechs.domain.Product;
 import merliontechs.repository.ProductRepository;
+import merliontechs.repository.projections.ProductBestSelling;
+import merliontechs.repository.projections.ProductMostProfitable;
 import merliontechs.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -115,4 +117,16 @@ public class ProductResource {
         productRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    // Podría tener un statitics repository de productos y de ventas
+    @GetMapping("/stats/products/best-sellings")
+    public List<ProductBestSelling> getFiveProductsBestSeller() {
+        return productRepository.findFiveBestSellingProducts();
+    }
+
+    @GetMapping("/stats/products/most-renevue")
+    public List<ProductMostProfitable> getFiveMostRevenueProducts() {
+        return productRepository.findFiveMostRevenueProducts();
+    }
+
 }

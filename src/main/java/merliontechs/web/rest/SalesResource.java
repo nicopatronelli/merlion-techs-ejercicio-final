@@ -2,6 +2,7 @@ package merliontechs.web.rest;
 
 import merliontechs.domain.Sales;
 import merliontechs.repository.SalesRepository;
+import merliontechs.repository.projections.SalesStats;
 import merliontechs.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -114,5 +115,19 @@ public class SalesResource {
         log.debug("REST request to delete Sales : {}", id);
         salesRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    // TODO: Javadoc and put in a SalesStatistics class
+    @GetMapping("/stats/sales/delivered")
+    public List<SalesStats> getNumberOfSalesInStateDeliveredPerDay() {
+        log.debug("REST request to get the number of sales in state delivered per day");
+        return salesRepository.findNumberOfSalesInStateDeliveredPerDay();
+    }
+
+    // TODO: Javadoc and put in a SalesStatistics class
+    @GetMapping("/stats/sales/daily")
+    public List<SalesStats> getTotalNumberOfSalesPerDay() {
+        log.debug("REST request to get the number total of sales per day");
+        return salesRepository.findTotalNumberOfSalesPerDay();
     }
 }
