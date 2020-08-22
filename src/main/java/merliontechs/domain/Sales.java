@@ -33,7 +33,7 @@ public class Sales implements Serializable {
     @Column(name = "date")
     private LocalDate date;
 
-    @ManyToOne
+    @ManyToOne //(cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties(value = "sales", allowSetters = true)
     private Product product;
 
@@ -110,5 +110,14 @@ public class Sales implements Serializable {
             ", state='" + getState() + "'" +
             ", date='" + getDate() + "'" +
             "}";
+    }
+
+    // constructors
+    public Sales() {}
+
+    public Sales(State state, LocalDate date, Product product) {
+        this.state = state;
+        this.date = date;
+        this.product = product;
     }
 }

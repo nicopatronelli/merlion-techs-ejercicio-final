@@ -23,10 +23,9 @@ public class Product implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "price", precision = 21, scale = 2)
+    @Column(precision = 21, scale = 2)
     private BigDecimal price;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -89,5 +88,19 @@ public class Product implements Serializable {
             ", name='" + getName() + "'" +
             ", price=" + getPrice() +
             "}";
+    }
+
+    // constructors
+    public Product() {}
+
+    public Product(String name, BigDecimal price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public Product(Long id, String name, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
     }
 }
