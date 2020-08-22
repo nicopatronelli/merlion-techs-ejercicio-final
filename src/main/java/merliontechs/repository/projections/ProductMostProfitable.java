@@ -1,6 +1,6 @@
 package merliontechs.repository.projections;
 
-public interface ProductMostRenevue {
+public interface ProductMostProfitable {
     Long getId();
     String getName();
     Double getProfits();
