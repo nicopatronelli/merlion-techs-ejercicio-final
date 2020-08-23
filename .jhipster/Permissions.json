@@ -1,0 +1,30 @@
+{
+  "name": "Permissions",
+  "fields": [
+    {
+      "fieldName": "perm",
+      "fieldType": "Perms",
+      "fieldValues": "TO_PRODUCT_CREATE_AND_UPDATE,TO_SHOW_PRODUCT_LIST,TO_PRODUCT_DETAIL,TO_PRODUCT_DELETE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "userWithPerms",
+      "otherEntityRelationshipName": "user",
+      "relationshipName": "userWithPerms",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200823034036",
+  "entityTableName": "permissions",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

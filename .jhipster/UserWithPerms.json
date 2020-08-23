@@ -1,0 +1,28 @@
+{
+  "name": "UserWithPerms",
+  "fields": [
+    {
+      "fieldName": "user",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "permissions",
+      "otherEntityRelationshipName": "userWithPerms",
+      "relationshipName": "user"
+    }
+  ],
+  "changelogDate": "20200823033936",
+  "entityTableName": "user_with_perms",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

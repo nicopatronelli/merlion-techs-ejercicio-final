@@ -1,0 +1,23 @@
+{
+  "testApp": {
+    "userWithPerms": {
+      "home": {
+        "title": "User With Perms",
+        "createLabel": "Crear nuevo User With Perms",
+        "createOrEditLabel": "Crear o editar User With Perms",
+        "notFound": "Ningún User With Perms encontrado"
+      },
+      "created": "Un nuevo User With Perms ha sido creado con el identificador {{ param }}",
+      "updated": "Un User With Perms ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un User With Perms ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar User With Perms {{ id }}?"
+      },
+      "detail": {
+        "title": "User With Perms"
+      },
+      "user": "User",
+      "user": "User"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "testApp": {
+    "Perms": {
+      "null": "",
+      "TO_PRODUCT_CREATE_AND_UPDATE": "TO_PRODUCT_CREATE_AND_UPDATE",
+      "TO_SHOW_PRODUCT_LIST": "TO_SHOW_PRODUCT_LIST",
+      "TO_PRODUCT_DETAIL": "TO_PRODUCT_DETAIL",
+      "TO_PRODUCT_DELETE": "TO_PRODUCT_DELETE"
+    }
+  }
+}

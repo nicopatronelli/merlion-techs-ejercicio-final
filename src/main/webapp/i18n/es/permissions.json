@@ -1,0 +1,23 @@
+{
+  "testApp": {
+    "permissions": {
+      "home": {
+        "title": "Permissions",
+        "createLabel": "Crear nuevo Permissions",
+        "createOrEditLabel": "Crear o editar Permissions",
+        "notFound": "Ningún Permissions encontrado"
+      },
+      "created": "Un nuevo Permissions ha sido creado con el identificador {{ param }}",
+      "updated": "Un Permissions ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Permissions ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Permissions {{ id }}?"
+      },
+      "detail": {
+        "title": "Permissions"
+      },
+      "perm": "Perm",
+      "userWithPerms": "User With Perms"
+    }
+  }
+}

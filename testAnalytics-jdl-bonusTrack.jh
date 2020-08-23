@@ -1,0 +1,21 @@
+entity Product {
+	name String
+	price BigDecimal
+}
+
+entity UserWithPerms {
+	user Long
+}
+
+entity Permissions {
+	perm Perms
+}
+
+enum Perms {
+	TO_PRODUCT_CREATE_AND_UPDATE, TO_SHOW_PRODUCT_LIST,
+	TO_PRODUCT_DETAIL, TO_PRODUCT_DELETE
+}
+
+relationship OneToMany {
+	UserWithPerms{user} to Permissions
+}
