@@ -115,4 +115,10 @@ public class UserWithPermsResource {
         userWithPermsRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
+
+    // borrador
+    @GetMapping("/perms/{userId}")
+    public List<String> getPermsByUserId(@PathVariable Long userId) {
+        return userWithPermsRepository.findPermissionsByUserId(userId);
+    }
 }
