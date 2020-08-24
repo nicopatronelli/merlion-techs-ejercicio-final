@@ -4,9 +4,13 @@ import merliontechs.config.Constants;
 
 import merliontechs.domain.Authority;
 import merliontechs.domain.User;
+import merliontechs.domain.enumeration.Authorities;
+import merliontechs.domain.enumeration.Perms;
 
 import javax.validation.constraints.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,6 +53,8 @@ public class UserDTO {
     private Instant lastModifiedDate;
 
     private Set<String> authorities;
+
+    private List<String> permissions = new ArrayList<>();
 
     public UserDTO() {
         // Empty constructor needed for Jackson.
@@ -174,6 +180,14 @@ public class UserDTO {
 
     public void setAuthorities(Set<String> authorities) {
         this.authorities = authorities;
+    }
+
+    public List<String> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<String> permissions) {
+        this.permissions = permissions;
     }
 
     // prettier-ignore

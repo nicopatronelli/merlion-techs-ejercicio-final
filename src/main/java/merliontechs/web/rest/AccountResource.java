@@ -2,6 +2,7 @@ package merliontechs.web.rest;
 
 import merliontechs.domain.User;
 import merliontechs.repository.UserRepository;
+import merliontechs.repository.UserWithPermsRepository;
 import merliontechs.security.SecurityUtils;
 import merliontechs.service.MailService;
 import merliontechs.service.UserService;
@@ -42,11 +43,13 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    private final UserWithPermsRepository userWithPermsRepository;
 
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, UserWithPermsRepository userWithPermsRepository) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.userWithPermsRepository = userWithPermsRepository;
     }
 
     /**
@@ -102,7 +105,15 @@ public class AccountResource {
     @GetMapping("/account")
     public UserDTO getAccount() {
         return userService.getUserWithAuthorities()
-            .map(UserDTO::new)
+            .map(
+                user -> {
+                    UserDTO userDTO = new UserDTO(user);
+                    List<String> userPermissions =
+                        userWithPermsRepository.findUserPermissionsByUserName(userDTO.getLogin());
+                    userDTO.setPermissions(userPermissions);
+                    return userDTO;
+                }
+            )
             .orElseThrow(() -> new AccountResourceException("User could not be found"));
     }
 
