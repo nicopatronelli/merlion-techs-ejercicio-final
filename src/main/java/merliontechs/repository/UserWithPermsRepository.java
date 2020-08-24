@@ -19,11 +19,12 @@ public interface UserWithPermsRepository extends JpaRepository<UserWithPerms, Lo
         "SELECT per.perm AS permission " +
         "FROM jhi_user u " +
             "JOIN user_with_perms uwp " +
-                "ON :userId = uwp.jhi_user " +
+                "ON u.id = uwp.jhi_user " +
             "JOIN permissions per " +
                 "ON uwp.id = per.user_with_perms_id " +
+        "WHERE u.login = :userName " +
         "GROUP BY per.perm",
         nativeQuery = true
     )
-    List<String> findPermissionsByUserId(@Param("userId") Long userId);
+    List<String> findUserPermissionsByUserName(@Param("userId") String userName);
 }
