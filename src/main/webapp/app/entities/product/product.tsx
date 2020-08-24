@@ -9,18 +9,19 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './product.reducer';
 import { IProduct } from 'app/shared/model/product.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
-
 import { Perms } from '../../shared/model/enumerations/perms.model';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import { AUTHORITIES } from 'app/config/constants';
+import { checkPermissionsFor } from './check-permissions';
 
 export interface IProductProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Product = (props: IProductProps) => {
-  const { productList, match, loading, permissions } = props;
+  const { productList, match, loading, permissions, isAdmin } = props;
 
-  const canShowList = permissions.includes(Perms.TO_SHOW_PRODUCT_LIST);
-  const canViewDetail = permissions.includes(Perms.TO_PRODUCT_DETAIL);
-  const canCreateAndUpdate = permissions.includes(Perms.TO_PRODUCT_CREATE_AND_UPDATE);
-  const canDelete = permissions.includes(Perms.TO_PRODUCT_DELETE);
+  const canViewDetail = checkPermissionsFor(Perms.TO_PRODUCT_DETAIL, permissions, isAdmin);
+  const canCreateAndUpdate = checkPermissionsFor(Perms.TO_PRODUCT_CREATE_AND_UPDATE, permissions, isAdmin);
+  const canDelete = checkPermissionsFor(Perms.TO_PRODUCT_DELETE, permissions, isAdmin);
 
   useEffect(() => {
     props.getEntities();
@@ -114,6 +115,7 @@ const mapStateToProps = (storeState: IRootState) => ({
   productList: storeState.product.entities,
   loading: storeState.product.loading,
   permissions: storeState.authentication.account.permissions,
+  isAdmin: hasAnyAuthority(storeState.authentication.account.authorities, [AUTHORITIES.ADMIN])
 });
 
 const mapDispatchToProps = {
