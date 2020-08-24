@@ -26,5 +26,5 @@ public interface UserWithPermsRepository extends JpaRepository<UserWithPerms, Lo
         "GROUP BY per.perm",
         nativeQuery = true
     )
-    List<String> findUserPermissionsByUserName(@Param("userId") String userName);
+    List<String> findUserPermissionsByUserName(@Param("userName") String userName);
 }
