@@ -10,23 +10,33 @@ import { getEntities } from './product.reducer';
 import { IProduct } from 'app/shared/model/product.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
+import { Perms } from '../../shared/model/enumerations/perms.model';
+
 export interface IProductProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const Product = (props: IProductProps) => {
-  useEffect(() => {
-    props.getEntities();
-  }, []);
+  const { productList, match, loading, permissions } = props;
 
-  const { productList, match, loading } = props;
+  const canShowList = permissions.includes(Perms.TO_SHOW_PRODUCT_LIST);
+  const canViewDetail = permissions.includes(Perms.TO_PRODUCT_DETAIL);
+  const canCreateAndUpdate = permissions.includes(Perms.TO_PRODUCT_CREATE_AND_UPDATE);
+  const canDelete = permissions.includes(Perms.TO_PRODUCT_DELETE);
+
   return (
     <div>
       <h2 id="product-heading">
         <Translate contentKey="testApp.product.home.title">Products</Translate>
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        {/* Create new product button */}
+        {/* <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <Translate contentKey="testApp.product.home.createLabel">Create new Product</Translate>
-        </Link>
+        </Link> */}
+        <Button tag={Link} to={`${match.url}/new`} color="primary" className="float-right jh-create-entity" id="jh-create-entity" disabled={!canCreateAndUpdate}>
+          <FontAwesomeIcon icon="plus" />
+          &nbsp;
+          <Translate contentKey="testApp.product.home.createLabel">Create new Product</Translate>
+        </Button>
       </h2>
       <div className="table-responsive">
         {productList && productList.length > 0 ? (
@@ -57,19 +67,22 @@ export const Product = (props: IProductProps) => {
                   <td>{product.price}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${product.id}`} color="info" size="sm">
+                      {/* View button */}
+                      <Button tag={Link} to={`${match.url}/${product.id}`} color="info" size="sm" disabled={!canViewDetail}>
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${product.id}/edit`} color="primary" size="sm">
+                      {/* Edit button */}
+                      <Button tag={Link} to={`${match.url}/${product.id}/edit`} color="primary" size="sm" disabled={!canCreateAndUpdate}>
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${product.id}/delete`} color="danger" size="sm">
+                      {/* Delete button */}
+                      <Button tag={Link} to={`${match.url}/${product.id}/delete`} color="danger" size="sm" disabled={!canDelete}>
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -93,9 +106,10 @@ export const Product = (props: IProductProps) => {
   );
 };
 
-const mapStateToProps = ({ product }: IRootState) => ({
-  productList: product.entities,
-  loading: product.loading,
+const mapStateToProps = (storeState: IRootState) => ({
+  productList: storeState.product.entities,
+  loading: storeState.product.loading,
+  permissions: storeState.authentication.account.permissions,
 });
 
 const mapDispatchToProps = {
