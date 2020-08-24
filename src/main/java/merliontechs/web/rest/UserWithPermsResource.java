@@ -116,14 +116,4 @@ public class UserWithPermsResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
-    /**
-     * {@code GET  /user-permissions/{userName} : get the permissions associated with the login userName
-     *
-     * @param userName the login of the user.
-     * @return the {@link List<String>} with status {@code 200 (OK)} and the list of the user permissions in the body.
-     */
-    @GetMapping("/user-permissions/{userName}")
-    public List<String> getPermsByUserId(@PathVariable String userName) {
-        return userWithPermsRepository.findUserPermissionsByUserName(userName);
-    }
 }
