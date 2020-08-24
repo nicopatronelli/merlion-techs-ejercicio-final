@@ -22,21 +22,25 @@ export const Product = (props: IProductProps) => {
   const canCreateAndUpdate = permissions.includes(Perms.TO_PRODUCT_CREATE_AND_UPDATE);
   const canDelete = permissions.includes(Perms.TO_PRODUCT_DELETE);
 
+  useEffect(() => {
+    props.getEntities();
+  }, []);
+
   return (
     <div>
       <h2 id="product-heading">
         <Translate contentKey="testApp.product.home.title">Products</Translate>
         {/* Create new product button */}
-        {/* <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <Translate contentKey="testApp.product.home.createLabel">Create new Product</Translate>
-        </Link> */}
-        <Button tag={Link} to={`${match.url}/new`} color="primary" className="float-right jh-create-entity" id="jh-create-entity" disabled={!canCreateAndUpdate}>
+        </Link>
+        {/* <Button tag={Link} to={`${match.url}/new`} color="primary" className="float-right jh-create-entity" id="jh-create-entity" disabled={!canCreateAndUpdate}>
           <FontAwesomeIcon icon="plus" />
           &nbsp;
           <Translate contentKey="testApp.product.home.createLabel">Create new Product</Translate>
-        </Button>
+        </Button> */}
       </h2>
       <div className="table-responsive">
         {productList && productList.length > 0 ? (
