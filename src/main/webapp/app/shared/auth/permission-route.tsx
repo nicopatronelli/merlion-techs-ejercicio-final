@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { RouteProps } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { IRootState } from 'app/shared/reducers';
-import PrivateRoute from './private-route';
+import PrivateRoute, { hasAnyAuthority } from './private-route';
+import { AUTHORITIES } from 'app/config/constants';
 
 interface IOwnProps extends RouteProps {
   permissionRequired: string,
@@ -16,10 +17,11 @@ export const PermissionRouteComponent = ({
   permissionRequired,
   hasPermission,
   hasAnyAuthorities = [],
+  isAdmin,
   ...rest
 }: IPermissionRoute) => {
   return (
-    hasPermission ? (
+    isAdmin || hasPermission ? (
       <PrivateRoute hasAnyAuthorities={hasAnyAuthorities}  {...rest}/>
     ) : (
       <div className="insufficient-authority">
@@ -39,7 +41,8 @@ const mapStateToProps = (
   { authentication: { account } }: IRootState,
   { permissionRequired }: IOwnProps
 ) => ({
-  hasPermission: checkPermission(account.permissions, permissionRequired)
+  hasPermission: checkPermission(account.permissions, permissionRequired),
+  isAdmin: hasAnyAuthority(account.authorities, [AUTHORITIES.ADMIN]),
 });
 
 type StateProps = ReturnType<typeof mapStateToProps>;
