@@ -31,12 +31,6 @@ export const Product = (props: IProductProps) => {
     <div>
       <h2 id="product-heading">
         <Translate contentKey="testApp.product.home.title">Products</Translate>
-        {/* Create new product button */}
-        {/* <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-          <FontAwesomeIcon icon="plus" />
-          &nbsp;
-          <Translate contentKey="testApp.product.home.createLabel">Create new Product</Translate>
-        </Link> */}
         <Button tag={Link} to={`${match.url}/new`} color="primary" className="float-right jh-create-entity" id="jh-create-entity" disabled={!canCreateAndUpdate}>
           <FontAwesomeIcon icon="plus" />
           &nbsp;
