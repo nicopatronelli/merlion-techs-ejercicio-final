@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,17 +118,4 @@ public class SalesResource {
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
-    // TODO: Javadoc and put in a SalesStatistics class
-    @GetMapping("/stats/sales/delivered")
-    public List<SalesStats> getNumberOfSalesInStateDeliveredPerDay() {
-        log.debug("REST request to get the number of sales in state delivered per day");
-        return salesRepository.findNumberOfSalesInStateDeliveredPerDay();
-    }
-
-    // TODO: Javadoc and put in a SalesStatistics class
-    @GetMapping("/stats/sales/daily")
-    public List<SalesStats> getTotalNumberOfSalesPerDay() {
-        log.debug("REST request to get the number total of sales per day");
-        return salesRepository.findTotalNumberOfSalesPerDay();
-    }
 }
