@@ -1,8 +1,8 @@
 import React, { memo, useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-import axios from 'axios';
 import {
   endpointSalesInStateDeliveredPerDay,
   endpointTotalNumberOfSalesPerDay, 
@@ -77,15 +77,15 @@ const SalesCharts = memo(({date, daily, delivered, both}: ChartProps) => {
 
   return (
         <LineChart
-          width={1000}
+          width={1050}
           height={300}
           data={dataToShow}
-          margin={{
-            top: 5, right: 30, left: 20, bottom: 5,
-          }}
-        >
+          // margin={{
+          //   top: 5, right: 30, left: 20, bottom: 5,
+          // }}
+          >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="dayNumber" />
+          <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
           <Legend />

@@ -44,7 +44,7 @@ const SalesChartSelector = memo((props) => {
         setDaily(false);
         setBoth(false);
     }
-    
+
     const handleSelectBothChar = () => {
         setBoth(true);
         setDaily(false);
@@ -53,6 +53,7 @@ const SalesChartSelector = memo((props) => {
 
     return( 
         <div>
+            <div className={classes.root}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justify="space-around">
                     <KeyboardDatePicker
@@ -70,16 +71,15 @@ const SalesChartSelector = memo((props) => {
                         views={["year", "month"]}
                         openTo="month"
                     />
+                    <ButtonGroup  aria-label="outlined primary button group">
+                        <Button onClick={handleSelectDailyChar}>Ventas diarias totales</Button>
+                        <Button onClick={handleSelectDeliveredChar}>Ventas en estado entregado</Button>
+                        <Button onClick={handleSelectBothChar}>Comparar</Button>
+                    </ButtonGroup>
                 </Grid>
             </MuiPickersUtilsProvider>
-            <br />
-            <div className={classes.root}>
-                <ButtonGroup color="primary" aria-label="outlined primary button group">
-                    <Button onClick={handleSelectDailyChar}>Ventas diarias</Button>
-                    <Button onClick={handleSelectDeliveredChar}>Ventas en estado entregado</Button>
-                    <Button onClick={handleSelectBothChar}>Comparar</Button>
-                </ButtonGroup>
             </div>
+            <br/>
             <SalesCharts date={selectedDate} daily={daily} delivered={delivered} both={both}/>
         </div>
     )

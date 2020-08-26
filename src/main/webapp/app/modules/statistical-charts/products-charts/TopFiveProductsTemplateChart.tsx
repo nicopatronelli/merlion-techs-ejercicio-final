@@ -27,6 +27,7 @@ const TopFiveProductsTemplateChart = memo(
     return( 
         <div>
             <h3>{charTitle}</h3>
+            <br/>
             <BarChart
                 width={1000}
                 height={300}

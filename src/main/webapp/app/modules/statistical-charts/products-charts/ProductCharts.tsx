@@ -21,7 +21,7 @@ const topFiveProductsMostProfitableChart =
     charTitle="Cinco productos de mayor ganancia"
     />
 
-const ProductStatsCharts = () => {
+const ProductCharts = () => {
     return (
         <div>
             <br/>
@@ -33,4 +33,4 @@ const ProductStatsCharts = () => {
     )
 }
 
-export default ProductStatsCharts;
+export default ProductCharts;
