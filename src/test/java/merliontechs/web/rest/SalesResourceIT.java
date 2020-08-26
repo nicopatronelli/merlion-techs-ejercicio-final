@@ -2,8 +2,8 @@ package merliontechs.web.rest;
 
 import merliontechs.TestApp;
 import merliontechs.domain.Sales;
-import merliontechs.repository.SalesRepository;
 
+import merliontechs.repository.SalesRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,7 +131,7 @@ public class SalesResourceIT {
             .andExpect(jsonPath("$.[*].state").value(hasItem(DEFAULT_STATE.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getSales() throws Exception {

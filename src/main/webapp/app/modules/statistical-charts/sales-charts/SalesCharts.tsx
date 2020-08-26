@@ -80,9 +80,9 @@ const SalesCharts = memo(({date, daily, delivered, both}: ChartProps) => {
           width={1050}
           height={300}
           data={dataToShow}
-          // margin={{
-          //   top: 5, right: 30, left: 20, bottom: 5,
-          // }}
+          margin={{
+            top: 5, right: 30, left: 20, bottom: 5,
+          }}
           >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />

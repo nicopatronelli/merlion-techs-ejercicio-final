@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
+import { Typography } from '@material-ui/core';
 
 interface TopFiveProductsChartProps {
     endpoint: string,
@@ -26,7 +27,7 @@ const TopFiveProductsTemplateChart = memo(
 
     return( 
         <div>
-            <h3>{charTitle}</h3>
+            <Typography variant="h5" align="center">{charTitle}</Typography>
             <br/>
             <BarChart
                 width={1000}

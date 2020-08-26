@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontFamily: 'Open Sans',
     fontSize: '1rem',
 },
+  indicatorColor: {
+    backgroundColor: '#4089c1',
+  }
 }));
 
 const StatsChartsTabs = () => {

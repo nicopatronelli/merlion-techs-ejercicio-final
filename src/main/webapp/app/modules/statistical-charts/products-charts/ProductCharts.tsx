@@ -10,7 +10,7 @@ const topFiveBestSellingProductsChart =
     endpoint={endpointTopFiveBestSellingProducts}
     barName="ventas" 
     barDataKey="sales"
-    charTitle="Cinco productos más vendidos"
+    charTitle="Los cinco productos más vendidos"
     />
 
 const topFiveProductsMostProfitableChart = 
@@ -18,7 +18,7 @@ const topFiveProductsMostProfitableChart =
     endpoint={endpointTopFiveMostProfitableProducts}
     barName="ganancias(USD)" 
     barDataKey="profits"
-    charTitle="Cinco productos de mayor ganancia"
+    charTitle="Los cinco productos de mayor ganancia"
     />
 
 const ProductCharts = () => {
@@ -26,6 +26,7 @@ const ProductCharts = () => {
         <div>
             <br/>
             {topFiveBestSellingProductsChart}
+            <br/>
             <br/>
             {topFiveProductsMostProfitableChart}
             <br/>
