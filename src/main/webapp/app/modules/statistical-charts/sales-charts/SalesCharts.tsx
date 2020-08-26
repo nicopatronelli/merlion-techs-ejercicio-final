@@ -1,19 +1,18 @@
 import React, { memo, useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 import {
   endpointSalesInStateDeliveredPerDay,
   endpointTotalNumberOfSalesPerDay, 
   endpointCombinedSales
 } from '../endpoints-stats';
+import { Charts } from './type-charts-enum';
 
 interface ChartProps {
-  daily: boolean,
-  delivered: boolean,
-  date: Date
-  both: boolean
+  date: Date,
+  chart: Charts
 }
 
 // The method getMonth() is 0 indexed!
@@ -21,7 +20,7 @@ const getRealMonth = (date: Date) => {
   return date.getMonth() + 1;
 }
 
-const SalesCharts = memo(({date, daily, delivered, both}: ChartProps) => {
+const SalesCharts = memo(({date, chart}: ChartProps) => {
   const month = getRealMonth(date);
   const year = date.getFullYear();
   const [dataToShow, setDataToShow] = useState([]);
@@ -42,10 +41,13 @@ const SalesCharts = memo(({date, daily, delivered, both}: ChartProps) => {
     fetchSalesData(endpointCombinedSales);
 
   useEffect(() => {
-    if (daily) fetchDailySales();
-    else if (delivered) fetchDeliveredSales();
-    else if (both) fetchCombinedSales();
-  }, [date, daily, delivered, both])
+    switch(chart) {
+      case Charts.DAILY: fetchDailySales(); break;
+      case Charts.DELIVERED: fetchDeliveredSales(); break;
+      case Charts.COMBINED: fetchCombinedSales(); break;
+      default : fetchDailySales()
+    }
+  }, [date, chart])
 
   const lineDeliveredSales = 
     <Line 
@@ -76,9 +78,8 @@ const SalesCharts = memo(({date, daily, delivered, both}: ChartProps) => {
     />
 
   return (
+    <ResponsiveContainer width={'99%'} height={300} >
         <LineChart
-          width={1050}
-          height={300}
           data={dataToShow}
           margin={{
             top: 5, right: 30, left: 20, bottom: 5,
@@ -89,11 +90,12 @@ const SalesCharts = memo(({date, daily, delivered, both}: ChartProps) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          { delivered && lineDeliveredSales }
-          { daily && lineDailySales }
-          { both && linesCombinedSalesDaily }
-          { both && lineCombinedSalesDelivered }
+          { chart === Charts.DAILY && lineDailySales }
+          { chart === Charts.DELIVERED && lineDeliveredSales }
+          { chart === Charts.COMBINED && linesCombinedSalesDaily }
+          { chart === Charts.COMBINED && lineCombinedSalesDelivered }
       </LineChart>
+      </ResponsiveContainer>
   )
 })
 

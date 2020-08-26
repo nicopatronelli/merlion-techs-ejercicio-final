@@ -9,6 +9,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import DateFnsUtils from '@date-io/date-fns';
 import SalesCharts from './SalesCharts';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Charts } from './type-charts-enum';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,29 +27,21 @@ const useStyles = makeStyles((theme: Theme) =>
 const SalesChartSelector = memo((props) => {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const originOfTime = new Date(2020, 0, 1);
-    const [daily, setDaily] = useState(true);
-    const [delivered, setDelivered] = useState(false);
-    const [both, setBoth] = useState(false);
+    const [selectedChart, setSelectedChart] = useState(Charts.DAILY);
     const classes = useStyles();
 
     const handleDateChange = (date) => setSelectedDate(date);
 
     const handleSelectDailyChar = () => {
-        setDaily(true);
-        setDelivered(false);
-        setBoth(false);
+        setSelectedChart(Charts.DAILY);
     }
 
     const handleSelectDeliveredChar = () => {
-        setDelivered(true);
-        setDaily(false);
-        setBoth(false);
+        setSelectedChart(Charts.DELIVERED);
     }
 
     const handleSelectBothChar = () => {
-        setBoth(true);
-        setDaily(false);
-        setDelivered(false);
+        setSelectedChart(Charts.COMBINED);
     }
 
     return( 
@@ -80,7 +73,7 @@ const SalesChartSelector = memo((props) => {
             </MuiPickersUtilsProvider>
             </div>
             <br/>
-            <SalesCharts date={selectedDate} daily={daily} delivered={delivered} both={both}/>
+            <SalesCharts date={selectedDate} chart={selectedChart} />
         </div>
     )
 });

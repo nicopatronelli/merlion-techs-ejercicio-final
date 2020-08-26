@@ -7,18 +7,18 @@ import {
 
 const topFiveBestSellingProductsChart = 
     <TopFiveProductsTemplateChart
-    endpoint={endpointTopFiveBestSellingProducts}
-    barName="ventas" 
-    barDataKey="sales"
-    charTitle="Los cinco productos más vendidos"
+        endpoint={endpointTopFiveBestSellingProducts}
+        barName="ventas" 
+        barDataKey="sales"
+        charTitle="Los cinco productos más vendidos"
     />
 
 const topFiveProductsMostProfitableChart = 
     <TopFiveProductsTemplateChart
-    endpoint={endpointTopFiveMostProfitableProducts}
-    barName="ganancias(USD)" 
-    barDataKey="profits"
-    charTitle="Los cinco productos de mayor ganancia"
+        endpoint={endpointTopFiveMostProfitableProducts}
+        barName="ganancias(USD)" 
+        barDataKey="profits"
+        charTitle="Los cinco productos que otorgaron mayor ganancia"
     />
 
 const ProductCharts = () => {
