@@ -12,19 +12,19 @@ import java.util.stream.Collectors;
 
 public class SalesStatsUtil {
 
-    /**
-     * Map a list of SalesStats into a list of SalesStatsDTO
-     *
-     * @param sales is the list of {@link SalesStats} to map.
-     * @return a list of {@link SalesStatsDTO}.
-     */
-    public static List<SalesStatsDTO> mapToSalesStatsDTO(List<SalesStats> sales) {
-        return sales.stream()
-            .map(
-                s -> new SalesStatsDTO(s.getDate().getDayOfMonth(), s.getSales())
-            )
-            .collect(Collectors.toList());
-    }
+//    /**
+//     * Map a list of SalesStats into a list of SalesStatsDTO
+//     *
+//     * @param sales is the list of {@link SalesStats} to map.
+//     * @return a list of {@link SalesStatsDTO}.
+//     */
+//    public static List<SalesStatsDTO> mapToSalesStatsDTO(List<SalesStats> sales) {
+//        return sales.stream()
+//            .map(
+//                s -> new SalesStatsDTO(s.getDate().getDayOfMonth(), s.getSales())
+//            )
+//            .collect(Collectors.toList());
+//    }
 
      /**
      * Merge two lists of sales into a map of <{@link LocalDate}, {@link SalesStatsCombined}>

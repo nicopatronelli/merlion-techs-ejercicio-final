@@ -37,23 +37,21 @@ public class SalesStatsController {
     }
 
     @GetMapping("/stats/sales/delivered")
-    public List<SalesStatsDTO> getNumberOfSalesInStateDeliveredPerDay(
+    public List<SalesStats> getNumberOfSalesInStateDeliveredPerDay(
         @RequestParam("year") int year,
         @RequestParam("month") int month
     ) {
         log.debug("REST request to get sales in delivered state per day stats");
-        List<SalesStats> sales = salesRepository.findNumberOfSalesInStateDeliveredPerDay(year, month);
-        return mapToSalesStatsDTO(sales);
+        return salesRepository.findNumberOfSalesInStateDeliveredPerDay(year, month);
     }
 
     @GetMapping("/stats/sales/daily")
-    public List<SalesStatsDTO> getTotalNumberOfSalesPerDay(
+    public List<SalesStats> getTotalNumberOfSalesPerDay(
         @RequestParam("year") int year,
         @RequestParam("month") int month
     ) {
         log.debug("REST request to get the total number of sales per day stats");
-        List<SalesStats> sales = salesRepository.findTotalNumberOfSalesPerDay(year, month);
-        return mapToSalesStatsDTO(sales);
+        return salesRepository.findTotalNumberOfSalesPerDay(year, month);
     }
 
     @GetMapping("/stats/sales/combined")
