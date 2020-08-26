@@ -4,23 +4,31 @@ import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
   } from 'recharts';
 
-const TopFiveSellingProductsChart = memo((props) => {
+interface TopFiveProductsChartProps {
+    endpoint: string,
+    barName: string,
+    barDataKey: string,
+    charTitle: string
+}
+
+const TopFiveProductsTemplateChart = memo(
+    ({endpoint, barName, barDataKey, charTitle}: TopFiveProductsChartProps) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get('api/stats/products/best-sellings');
+            const response = await axios.get(endpoint);
             const productsResponse = response.data;
             setProducts(productsResponse);
         }
         fetchData();
     }, [])
 
-    return(
+    return( 
         <div>
-            <h3>Cinco productos más vendidos</h3>
+            <h3>{charTitle}</h3>
             <BarChart
-                width={800}
+                width={1000}
                 height={300}
                 data={products}
                 margin={{
@@ -32,10 +40,10 @@ const TopFiveSellingProductsChart = memo((props) => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar name="ventas" dataKey="sales" fill="#4089c1" />
+                <Bar name={barName} dataKey={barDataKey} fill="#4089c1" />
             </BarChart>
         </div>
     )
 });
 
-export default TopFiveSellingProductsChart;
+export default TopFiveProductsTemplateChart;

@@ -5,10 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import SalesInStatusDeliveredPerDayGraph from './sales-charts/SalesInStatusDeliveredPerDayChart';
-import TotalSalesPerDayChart from './sales-charts/TotalSalesPerDayChart';
-import TopFiveSellingProductsChart from './products-charts/TopFiveSellingProductsChart';
-import TopFiveMostRevenueProductsChart from './products-charts/TopFiveMostRevenueProductsChart';
+import SalesChartSelector from './sales-charts/SalesChartSelector';
+import ProductStatsCharts from './products-charts/ProductStatsCharts';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -16,7 +14,7 @@ interface TabPanelProps {
   value: any;
 }
 
-function TabPanel(props: TabPanelProps) {
+const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
   return (
@@ -50,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function SimpleTabs() {
+const StatsChartsTabs = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -61,19 +59,19 @@ export default function SimpleTabs() {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+        <Tabs value={value} onChange={handleChange} >
           <Tab label="Ventas" {...a11yProps(0)} />
           <Tab label="Productos" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <SalesInStatusDeliveredPerDayGraph />
-        <TotalSalesPerDayChart />
+        <SalesChartSelector />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <TopFiveSellingProductsChart />
-        <TopFiveMostRevenueProductsChart />
+        <ProductStatsCharts />
       </TabPanel>
     </div>
   );
 }
+
+export default StatsChartsTabs;
