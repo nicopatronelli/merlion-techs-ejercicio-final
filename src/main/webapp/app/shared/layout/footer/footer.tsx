@@ -9,7 +9,7 @@ const Footer = props => (
     <Row>
       <Col md="12">
         <p>
-          <Translate contentKey="footer">Your footer</Translate>
+          Merlion Techs 2020 - Ejercicio Final Entrevista
         </p>
       </Col>
     </Row>

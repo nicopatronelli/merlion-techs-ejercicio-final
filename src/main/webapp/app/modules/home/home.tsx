@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Translate } from 'react-jhipster';
 import { connect } from 'react-redux';
 import { Container, Row, Col, Alert } from 'reactstrap';
-import StatisticalCharts from '../statistical-charts/StatisticalCharts';
+import StatsChartsTabs from '../statistical-charts/StartsChartsTabs';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 import { AUTHORITIES } from 'app/config/constants';
 
@@ -12,16 +12,6 @@ export type IHomeProp = StateProps;
 
 export const Home = (props: IHomeProp) => {
   const { account, isAdmin } = props;
-  // eslint-disable-next-line no-console
-  console.log("account object INFO");
-  // eslint-disable-next-line no-console
-  console.log(JSON.stringify(account));
-  // eslint-disable-next-line no-console
-  console.log("Is ADMIN");
-  // eslint-disable-next-line no-console
-  console.log(JSON.stringify(isAdmin));
-  // const isAdmin = hasAnyAuthority(account.authorities, [AUTHORITIES.ADMIN]);
-
 
   return (
     <Container>
@@ -34,13 +24,7 @@ export const Home = (props: IHomeProp) => {
           <Translate contentKey="home.subtitle">This is your homepage</Translate>
         </p>
         {account && account.login ? (
-          <div>
-            <Alert color="success">
-              <Translate contentKey="home.logged.message" interpolate={{ username: account.login }}>
-                You are logged in as user {account.login}.
-              </Translate>
-            </Alert>
-          </div>
+          null
         ) : (
           <div>
             <Alert color="warning">
@@ -54,7 +38,6 @@ export const Home = (props: IHomeProp) => {
                 <br />- User (login=&quot;user&quot; and password=&quot;user&quot;).
               </Translate>
             </Alert>
-
             <Alert color="warning">
               <Translate contentKey="global.messages.info.register.noaccount">You do not have an account yet?</Translate>&nbsp;
               <Link to="/account/register" className="alert-link">
@@ -63,7 +46,7 @@ export const Home = (props: IHomeProp) => {
             </Alert>
           </div>
         )}
-      {isAdmin ? <StatisticalCharts /> : null}
+      {isAdmin ? <StatsChartsTabs /> : null}
       </Col>
     </Row>
     </Container>
