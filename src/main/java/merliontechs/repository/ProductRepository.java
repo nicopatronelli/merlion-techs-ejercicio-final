@@ -37,5 +37,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 "FETCH FIRST 5 ROWS ONLY"
         , nativeQuery = true
     )
-    List<ProductMostProfitable> findFiveMostRevenueProducts();
+    List<ProductMostProfitable> findFiveMostProfitableProducts();
 }
