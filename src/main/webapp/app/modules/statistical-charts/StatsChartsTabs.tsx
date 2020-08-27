@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SalesChartSelector from './sales-charts/SalesChartSelector';
 import ProductCharts from './products-charts/ProductCharts';
-import { Typography } from '@material-ui/core';
 
 interface TabPanelProps {
   children?: React.ReactNode;
