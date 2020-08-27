@@ -66,7 +66,7 @@ const SalesChartSelector = memo((props) => {
                     />
                     <ButtonGroup  aria-label="outlined primary button group">
                         <Button onClick={handleSelectDailyChar}>Ventas diarias totales</Button>
-                        <Button onClick={handleSelectDeliveredChar}>Ventas en estado entregado</Button>
+                        <Button onClick={handleSelectDeliveredChar}>Ventas diarias en estado entregado</Button>
                         <Button onClick={handleSelectBothChar}>Comparar</Button>
                     </ButtonGroup>
                 </Grid>

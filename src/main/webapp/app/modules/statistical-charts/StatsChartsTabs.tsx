@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SalesChartSelector from './sales-charts/SalesChartSelector';
 import ProductCharts from './products-charts/ProductCharts';
+import { Typography } from '@material-ui/core';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -69,6 +70,9 @@ const StatsChartsTabs = () => {
 
   return (
     <div className={classes.root}>
+      <Typography variant="h4" >
+        Estadísticas del negocio
+      </Typography>
       <p className="lead">
         Puede seleccionar estadísticas de ventas, que 
         se calculan a nivel mensual, y estadísticas 

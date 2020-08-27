@@ -49,27 +49,27 @@ public class SalesStatsTests {
         saveSales();
     }
 
-    @Test
-    void theSalesInDeliveredStateAreGroupedByDay() {
-        List<SalesStats> sales = salesRepository.findNumberOfSalesInStateDeliveredPerDay(2020, 8);
-        sales.forEach(
-            s -> System.out.println("date" + s.getDate() + "sales" + s.getSales())
-        );
-        assertEquals(4, sales.size());
-    }
-
 //    @Test
-//    void theNumberOfSalesInDeliveredStatePerDayIsCorrect() {
+//    void theSalesInDeliveredStateAreGroupedByDay() {
 //        List<SalesStats> sales = salesRepository.findNumberOfSalesInStateDeliveredPerDay(2020, 8);
-//        Long deliveredSalesOnAugustSecond = sales.get(1).getSales();
-//        assertEquals(2, deliveredSalesOnAugustSecond);
+//        sales.forEach(
+//            s -> System.out.println("date" + s.getDate() + "sales" + s.getSales())
+//        );
+//        assertEquals(4, sales.size());
 //    }
 //
-//    @Test
-//    void findTotalNumberOfSalesPerDayReturnsTheTotalNumberOfSalesInAnyState() {
-//        List<SalesStats> sales = salesRepository.findTotalNumberOfSalesPerDay(2020, 8);
-//        assertEquals(6, sales.size());
-//    }
+////    @Test
+////    void theNumberOfSalesInDeliveredStatePerDayIsCorrect() {
+////        List<SalesStats> sales = salesRepository.findNumberOfSalesInStateDeliveredPerDay(2020, 8);
+////        Long deliveredSalesOnAugustSecond = sales.get(1).getSales();
+////        assertEquals(2, deliveredSalesOnAugustSecond);
+////    }
+////
+////    @Test
+////    void findTotalNumberOfSalesPerDayReturnsTheTotalNumberOfSalesInAnyState() {
+////        List<SalesStats> sales = salesRepository.findTotalNumberOfSalesPerDay(2020, 8);
+////        assertEquals(6, sales.size());
+////    }
 
     private void saveProducts() {
         macBookPro = new Product("Mac Book Pro", new BigDecimal(649.99));

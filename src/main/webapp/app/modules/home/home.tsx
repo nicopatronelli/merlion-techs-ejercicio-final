@@ -17,7 +17,6 @@ export const Home = (props: IHomeProp) => {
     <Container>
       <Row>
         <Col>
-          <h2>Estadísticas del negocio</h2>
           {account && account.login ? (
             null
           ) : (
